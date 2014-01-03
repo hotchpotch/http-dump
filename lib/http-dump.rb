@@ -37,7 +37,7 @@ class HTTPDump
       response.headers.each {|key, val| res << "< #{key}: #{val}" }
       body = response.body
       unless body.empty?
-        res << "< "
+        res << "<"
         if quiet_format && body.size > 100
           head = body[0..50]
           res << head.split("\n")[0]
