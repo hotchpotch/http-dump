@@ -27,7 +27,7 @@ class HTTPDump
     end
 
     def output
-      @output || STDERR
+      @output || STDOUT
     end
 
     def format(request_signature, response)
