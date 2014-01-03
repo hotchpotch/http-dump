@@ -11,19 +11,22 @@ class HTTPDump
       WebMock.after_request do |request_signature, response|
         output.puts self.format(request_signature, response)
       end
+      @enabled = true
     end
 
     def disable!(options = {})
       WebMock.reset_callbacks
       WebMock.disable_net_connect!(options)
       WebMock.disable!(options)
+      @enabled = false
     end
 
     def dump(options = {}, &block)
-      enable!(options)
+      enabled = @enabled
+      enable!(options) unless enabled
       block.call
     ensure
-      disable!(options)
+      disable!(options) unless enabled
     end
 
     def output
@@ -34,7 +37,7 @@ class HTTPDump
       res = []
       res << "> #{request_signature}"
       res << "< #{response.status.join(' ')}"
-      response.headers.each {|key, val| res << "< #{key}: #{val}" }
+      response.headers.each {|key, val| res << "< #{key}: #{val}" } if response.headers
       body = response.body
       unless body.empty?
         res << "<"
