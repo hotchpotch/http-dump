@@ -6,7 +6,7 @@ Supported HTTP libraries = [WebMock supported liraries](https://github.com/bblim
 
 ## Usage
 
-### HTTPDump#dump(options={}, &block)
+### HTTPDump.dump(options={}, &block)
 
 ```ruby
 require 'net/http'
@@ -42,7 +42,7 @@ HTTPDump.dump {
 ... more ...
 ```
 
-### HTTPDump#enable!(options={}), disable!(options={})
+### HTTPDump.enable!(options={}), disable!(options={})
 
 ```ruby
 require 'open-uri'
@@ -61,7 +61,7 @@ HTTPDump.disable!
 ... more ...
 ```
 
-### HTTPDump#quiet_format
+### HTTPDump.quiet_format
 
 ```ruby
 HTTPDump.quiet_format = true
@@ -93,7 +93,7 @@ HTTPDump.dump {
 
 ```
 
-### HTTPDump#output=, output
+### HTTPDump.output=, output
 
 ```ruby
 HTTPDump.output #=> #<IO:<STDOUT>> (default output)
