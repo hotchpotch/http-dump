@@ -5,12 +5,12 @@ require 'http-dump/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "http-dump"
-  spec.version       = Http::Dump::VERSION
+  spec.version       = HTTPDump::VERSION
   spec.authors       = ["Yuichi Tateno"]
   spec.email         = ["hotchpotch@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Dump http request use WebMock.}
+  spec.description   = %q{Dump http request use WebMock.}
+  spec.homepage      = "https://github.com/hotchpotch/http-dump"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -19,6 +19,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "webmock"
-  spec.add_development_dependency "bundler", "~> 1.5"
+  spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
 end
