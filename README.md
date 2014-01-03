@@ -1,5 +1,7 @@
 # HTTPDump
 
+[![Build Status](https://travis-ci.org/hotchpotch/http-dump.png?branch=master)](https://travis-ci.org/hotchpotch/http-dump)
+
 Dump http request use [WebMock](https://github.com/bblimke/webmock).
 
 Supported HTTP libraries = [WebMock supported liraries](https://github.com/bblimke/webmock#supported-http-libraries), Net::HTTP, HTTPParty, HTTPClient, Excon, more...
