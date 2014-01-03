@@ -51,7 +51,7 @@ require 'open-uri'
 require 'http-dump'
 
 HTTPDump.enable!
-open(‘http://example.com’).read
+open('http://example.com').read
 HTTPDump.disable!
 ```
 
