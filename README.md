@@ -6,6 +6,10 @@ Dump http request use [WebMock](https://github.com/bblimke/webmock).
 
 Supported HTTP libraries = [WebMock supported liraries](https://github.com/bblimke/webmock#supported-http-libraries), Net::HTTP, HTTPParty, HTTPClient, Excon, more...
 
+```
+$ gem install 'http-dump'
+```
+
 ## Usage
 
 ### HTTPDump.dump(options={}, &block)
