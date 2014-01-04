@@ -56,17 +56,3 @@ class HTTPDump
   end
 end
 
-__END__
-
-#HTTPDump.enable!
-require 'open-uri'
-HTTPDump.quiet_formatt = true
-HTTPDump.dump {
-  open('http://example.com').read
-}
-open('http://example.com').read
-
-HTTPDump.dump {
-  open('http://b.hatena.ne.jp/').read
-}
-
