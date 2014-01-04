@@ -7,7 +7,7 @@ Dump http request use [WebMock](https://github.com/bblimke/webmock).
 Supported HTTP libraries = [WebMock supported liraries](https://github.com/bblimke/webmock#supported-http-libraries), Net::HTTP, HTTPParty, HTTPClient, Excon, more...
 
 ```
-$ gem install 'http-dump'
+$ gem install http-dump
 ```
 
 ## Usage
@@ -106,6 +106,14 @@ HTTPDump.output #=> #<IO:<STDOUT>> (default output)
 HTTPDump.output = STDERR
 HTTPDump.dump {
     Net::HTTP.get(URI('http://example.com')) # dump to STDERR
+}
+
+require 'logger'
+logger = Logger.new(STDOUT)
+logger.instance_eval { class << self; alias_method :puts, :info; end }
+HTTPDump.output = logger
+HTTPDump.dump {
+    Net::HTTP.get(URI('http://example.com')) # dump to logger
 }
 ```
 
