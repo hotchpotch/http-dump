@@ -126,6 +126,20 @@ $ ruby -r'net/http' -r'uri' -r'http-dump/enable' -e 'Net::HTTP.get(URI("http://e
 ...
 ```
 
+#### on Rails
+
+```
+# in Gemfile
+
+group :development do
+  gem 'http-dump', require: ENV['HTTP_DUMP_ENABLE'] ? 'http-dump/enable' : 'http-dump'
+end
+```
+
+```
+HTTP_DUMP_ENABLE=1 bundle exec rails s
+```
+
 ## Installation
 
 Add this line to your application's Gemfile:
