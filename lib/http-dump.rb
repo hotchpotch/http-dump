@@ -1,11 +1,11 @@
 
 require "http-dump/version"
-require 'webmock'
 
 class HTTPDump
   class << self
     attr_accessor :output, :quiet_format
     def enable!(options = {})
+      require 'webmock'
       WebMock.enable!(options)
       WebMock.allow_net_connect!(options)
       WebMock.after_request do |request_signature, response|
@@ -16,7 +16,6 @@ class HTTPDump
 
     def disable!(options = {})
       WebMock.reset_callbacks
-      WebMock.disable_net_connect!(options)
       WebMock.disable!(options)
       @enabled = false
     end
