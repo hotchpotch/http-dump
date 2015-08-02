@@ -3,7 +3,7 @@ require "http-dump/version"
 
 class HTTPDump
   class << self
-    attr_accessor :output, :quiet_format
+    attr_accessor :output, :quiet_format, :output_encoding
     def enable!(options = {})
       require 'webmock'
       WebMock.enable!(options)
@@ -50,7 +50,11 @@ class HTTPDump
           res << body
         end
       end
-      res.join("\n")
+      if @output_encoding
+        res.map{|d| d.force_encoding @output_encoding }.join("\n")
+      else
+        res.join("\n")
+      end
     end
   end
 end
