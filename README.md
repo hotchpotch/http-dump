@@ -117,6 +117,16 @@ HTTPDump.dump {
 }
 ```
 
+### HTTPDump.output_encoding=
+
+In some cases, encoding of request and response is not matched and it causes `Encoding::CompatibilityError`.
+
+`HTTPDump.output_encoding=` may resolve the issue.
+
+```ruby
+HTTPDump.output_encoding = "utf-8"
+```
+
 ### http-dump/enable
 
 ```sh
