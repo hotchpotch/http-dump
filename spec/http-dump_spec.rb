@@ -1,3 +1,4 @@
+# coding: utf-8
 require 'spec_helper'
 require 'uri'
 require 'open-uri'
@@ -9,6 +10,7 @@ describe HTTPDump do
   before(:each) do
     HTTPDump.disable!
     HTTPDump.output = output
+    HTTPDump.output_encoding = nil
   end
 
   after(:each) do
@@ -45,6 +47,30 @@ describe HTTPDump do
       HTTPDump.dump {
         open('http://example.com/', "X-My-Header" => "foo").read
       }
+    end
+  end
+
+  context '.output_encoding=' do
+    let(:request_header_with_utf8) { {"X-My-Header" => "日本語".force_encoding("utf-8")} }
+    let(:response_body_with_ascii) { "日本語".force_encoding("ascii") }
+
+    it 'raises encoding error if encoding of request and response is not matched and output_encoding is not set' do
+      expect {
+        stub_request(:get, 'http://example.com/').to_return({:body => response_body_with_ascii, :status => 200}).times(1)
+        HTTPDump.dump {
+          open('http://example.com/', request_header_with_utf8)
+        }
+      }.to raise_error(Encoding::CompatibilityError)
+    end
+
+    it 'does not raise encoding error if encoding of request and response is not matched but output_encoding is set' do
+      expect {
+        HTTPDump.output_encoding = "utf-8"
+        stub_request(:get, 'http://example.com/').to_return({:body => response_body_with_ascii, :status => 200}).times(1)
+        HTTPDump.dump {
+          open('http://example.com/', request_header_with_utf8)
+        }
+      }.not_to raise_error
     end
   end
 
